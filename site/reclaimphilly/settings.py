@@ -117,10 +117,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'reclaimphilly',
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'reclaimphilly_web',
 )
 
 # A sample logging configuration. The only tangible logging
