@@ -2,3 +2,5 @@ env
 *.pyc
 *.project
 *.sqlite
+*.
+*.pydevproject
