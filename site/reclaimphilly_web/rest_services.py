@@ -1,4 +1,4 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseBadRequest
 import json
 from services import LocationService
 import validations
@@ -49,8 +49,7 @@ def get_location_by_id(request, id):
 	- description
 	- type   TODO This is coming back as the DB string, not the descriptive English version -- change that	
 	"""
-	location = Location.objects.get(id=id)
-	
+	location = location_service.get_location(id=id)
 	location_dict = conversions.location_to_detailed_coordinate_dict(location)
 	
 	json_result = "[]"
@@ -60,25 +59,15 @@ def get_location_by_id(request, id):
 	return HttpResponse(json_result, mimetype="application/json", content_type="application/json; charset=utf8") # switch content_type to 'application/javascript for easier debug in browser
 	
 
-#def add_location(request):
-#	latitude = None
-#	longitude = None
-#	
-#	# Get all the parameters
-#	params = request.GET
-#	try:
-#		latitude = float(params["latitude"])
-#		longitude = float(params["longitude"])
-#		# TODO add other types in here
-#	except:
-#		raise Http404 #TODO This error should be something else and have an error message attached
-#
-#	# Validate parameters
-#	if not validations.is_number(latitude) or not validations.is_number(longitude):
-#	   raise Http404 #TODO This error should be something else and have an error message attached
-#
-#	location_service.add_location(latitude, longitude)
-#	
-#	json_result = "[]"
-#	
-#	return HttpResponse(json_result, mimetype="application/json", content_type="application/json; charset=utf8") # switch content_type to 'application/javascript for easier debug in browser
+def add_location(request, latitude, longitude, type, address=None, picture=None, description=None):
+	"""
+	TODO document
+	"""
+	location = location_service.add_location(latitude, longitude, type, address, picture, description)
+	
+	if location:
+		return get_location_by_id(request, location.id)
+	else:
+		httpResponse = HttpResponseBadRequest()
+		httpResponse.content = "Could not add the location"
+		raise httpResponse

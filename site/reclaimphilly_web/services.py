@@ -49,13 +49,18 @@ class LocationService():
 		return new_location
 
 
-	def get_location(self, latitude, longitude):
+	def get_location(self, latitude=None, longitude=None, id=None):
 		"""
 		Gets a Location object from a given point (latitude and longitude).
 
 		If a matching Location object isn't found, returns None
 		"""
 		try:
-			return Location.objects.get(latitude=latitude, longitude=longitude)
-		except: # Entry.DoesNotExist:
+			if latitude and longitude:
+				return Location.objects.get(latitude=latitude, longitude=longitude)
+			elif id:
+				return Location.objects.get(id=id)
+			else:
+				return None
+		except:
 			return None
