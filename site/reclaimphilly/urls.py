@@ -12,5 +12,5 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^services/locations/get$', 'reclaimphilly_web.rest_services.get_locations'),
+    url(r'^services/locations/latitude/(?P<latitude>\d+)/longitude/(?P<longitude>\d+)/radius/(?P<radius>\d+)', 'reclaimphilly_web.rest_services.get_locations'),
 )

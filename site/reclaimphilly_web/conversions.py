@@ -9,17 +9,20 @@ def location_to_coordinate_dict(location):
     """
     Converts a models.Location object
     to a dictionary containing two keys:
+    - id
     - latitude
     - longitude
     """
     return { "latitude" : float(location.latitude),
-           "longitude" : float(location.longitude)}
+           "longitude" : float(location.longitude),
+           "id" : location.id}
 
     
 def location_to_detailed_coordinate_dict(location):
 	"""
 	Converts a models.Location object
 	to a dictionary containing the following keys:
+	- id
 	- latitude
 	- longitude
 	- address
@@ -42,6 +45,7 @@ def locations_to_coordinate_list(locations):
 	"""
 	Converts a list of models.Location objects
 	to a list of dictionaries containing two keys:
+	- id
 	- latitude
 	- longitude
 	"""
