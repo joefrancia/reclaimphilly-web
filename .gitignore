@@ -4,3 +4,5 @@ env
 *.sqlite
 *.
 *.pydevproject
+web/.settings
+.settings
