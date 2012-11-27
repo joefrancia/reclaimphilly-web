@@ -2,14 +2,55 @@
 <head>
 <title>ReclaimPhilly</title>
 
+<link rel="stylesheet" href="/static/css/reclaimphilly.css" />
+<link rel="stylesheet" href="/static/js/leaflet/leaflet.css" />
 
+<script src="/static/js/leaflet/leaflet.js"></script>
+<script src="/static/js/jquery/jquery-1.8.3.min.js"></script>
+
+<script>
+/* 	var CITY_HALL_LATITUDE = ;
+	var CITY_HALL_LONGITUDE = ;
+	var DEFAULT_ZOOM = 13;
+ */
+	var setupMap = function() {
+		var map = L.map('mapDiv').setView([51.505, -0.09], 13);
+		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		    attribution: 'Map data by OpenStreetMap',
+		    maxZoom: 18
+		}).addTo(map);
+	};
+
+	$('document').ready(function() {
+		
+		// Search Button click event
+		$('#searchButton').click(function(){
+			var address = $('#addressInput').val();
+			// More here later
+		});
+		
+		setupMap();
+	});
+</script>
 
 </head>
 
 <body>
 
-	<p>ReclaimPhilly</p>
+	<div id="headerDiv">
+		<p>ReclaimPhilly</p>
+	</div>
 
+	<div id="searchDiv">
+		<form id="searchForm">
+			<input id="addressInput" type="text"></input>
+			<button id="searchButton">Search</button>
+		</form>
+	</div>
+
+	<div id="resultsDiv"></div>
+
+	<div id="mapDiv"></div>
 
 </body>
 </html>
