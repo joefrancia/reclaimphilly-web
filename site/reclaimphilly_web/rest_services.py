@@ -1,6 +1,9 @@
 from django.http import HttpResponse, Http404, HttpResponseBadRequest, \
 	HttpRequest, HttpResponseServerError
-import json
+try:
+    import simplejson as json
+except ImportError:
+    import json
 from services import LocationService
 import validations
 import conversions

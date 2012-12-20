@@ -1,2 +1,5 @@
 django
 PIL
+simplejson
+requests
+PyMySQL
