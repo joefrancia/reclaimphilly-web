@@ -11,6 +11,9 @@ class Location (models.Model):
 	- description (optional): Description of the Location 
 	- picture (optional): An image of the Location
 	"""
+	
+	# Valid types
+	VALID_TYPES = ('bldg', 'lot')
 
 	# Physical location data
 	latitude = models.DecimalField(max_digits=15, decimal_places=13)
@@ -18,7 +21,7 @@ class Location (models.Model):
 	address = models.CharField(max_length=200, blank=True, null=True)
 	
 	# Other info
-	LOCATION_TYPES = (
+	LOCATION_TYPES = ( # Keep this in-sync with VALID_TYPES
 		("bldg", "Building"),
 		("lot", "Lot"),
 	)
