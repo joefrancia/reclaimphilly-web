@@ -9,24 +9,38 @@
 <script src="/static/js/jquery/jquery-1.8.3.min.js"></script>
 
 <script>
-/* 	var CITY_HALL_LATITUDE = ;
-	var CITY_HALL_LONGITUDE = ;
-	var DEFAULT_ZOOM = 13;
- */
+	// Configuration items
+	var START_LATITUDE = 39.96;
+	var START_LONGITUDE = -75.17;
+	var DEFAULT_ZOOM = 15;
+
+	/*
+	 * Setup the map
+	 */
 	var setupMap = function() {
-		var map = L.map('mapDiv').setView([51.505, -0.09], 13);
+		var map = L.map('mapDiv').setView([START_LATITUDE, START_LONGITUDE], DEFAULT_ZOOM);
 		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		    attribution: 'Map data by OpenStreetMap',
 		    maxZoom: 18
 		}).addTo(map);
 	};
 
+	
+	/*
+	 * Geocode the search criteria
+	 */ 
+	var geocodeAddress = function(address) {
+		var geocodeUrl = "http://nominatim.openstreetmap.org/search/q=" + encodeURIComponent(address); 
+	};
+	
+	 
+	// Run after the document has loaded
 	$('document').ready(function() {
 		
 		// Search Button click event
 		$('#searchButton').click(function(){
 			var address = $('#addressInput').val();
-			// More here later
+			var addressCoordinates = geocodeAddress(address);
 		});
 		
 		setupMap();
