@@ -2,22 +2,26 @@
 An assortment of functions that convert  models from one
 type to another. Mostly used to prepare data for conversion
 to JSON in web services.
+
+(Note: django.core.serializer isn't used as much in the code
+because it returns more data than is necessary and isn't as clean
+as having it formatted first via these functions)
 """
 
 
 def location_to_coordinate_dict(location):
-    """
-    Converts a models.Location object
-    to a dictionary containing two keys:
-    - id
-    - latitude
-    - longitude
-    """
-    return { "latitude" : float(location.latitude),
-           "longitude" : float(location.longitude),
-           "id" : location.id}
+	"""
+	Converts a models.Location object
+	to a dictionary containing two keys:
+	- id
+	- latitude
+	- longitude
+	"""
+	return { "latitude" : float(location.latitude),
+		   "longitude" : float(location.longitude),
+		   "id" : location.id}
 
-    
+
 def location_to_detailed_coordinate_dict(location):
 	"""
 	Converts a models.Location object
@@ -29,7 +33,7 @@ def location_to_detailed_coordinate_dict(location):
 	- picture
 	- type
 	- description
-	
+
 	If a property is None, it is populated with an empty
 	string ('') 
 	"""
@@ -53,7 +57,7 @@ def locations_to_coordinate_list(locations):
 	for location in locations:
 		coordDict = location_to_coordinate_dict(location)
 		coord_list.append(coordDict)
-        
+
 	return coord_list
 
 def locations_to_detailed_coordinate_list(locations):
@@ -66,7 +70,7 @@ def locations_to_detailed_coordinate_list(locations):
 	- picture
 	- type
 	- description
-	
+
 	If a property is None, it is populated with an empty
 	string ('') 
 	"""
@@ -74,5 +78,5 @@ def locations_to_detailed_coordinate_list(locations):
 	for location in locations:
 		coordDict = location_to_detailed_coordinate_dict(location)
 		coord_list.append(coordDict)
-        
+
 	return coord_list
