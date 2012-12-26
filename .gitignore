@@ -6,3 +6,4 @@ env
 *.pydevproject
 web/.settings
 .settings
+.idea
